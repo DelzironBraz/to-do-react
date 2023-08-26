@@ -1,10 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Todo } from "./interface/to-do-list";
 import NewToDoForm from "./components/NewToDoForm";
 import ToDoList from "./components/ToDoList";
 
 const App = () => {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const localValue = localStorage.getItem("ITEMS");
+    if (localValue == null) return [];
+    return JSON.parse(localValue);
+  });
+
+  /* Anytime the todos array change, call the function above
+     This will create a local store for everytime the page refresh,
+     the todo list will not desaper.
+  */
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(todos));
+  }, [todos]);
 
   const addTodo = (title: string) => {
     setTodos((currentToDos: Todo[]) => {
