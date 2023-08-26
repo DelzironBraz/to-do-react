@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Todo } from "./interface/to-do-list";
 import NewToDoForm from "./components/NewToDoForm";
 import ToDoList from "./components/ToDoList";
+import "./App.css";
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>(() => {
@@ -46,11 +47,11 @@ const App = () => {
   };
 
   return (
-    <>
+    <main className="todo">
       <NewToDoForm addTodo={addTodo} />
       <h1 className="header">Todo List</h1>
       <ToDoList todos={todos} toggleToDo={toggleToDo} deleteToDo={deleteToDo} />
-    </>
+    </main>
   );
 };
 

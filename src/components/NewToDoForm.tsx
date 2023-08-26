@@ -17,8 +17,11 @@ const NewToDoForm = ({ addTodo }) => {
   return (
     <form onSubmit={handleSubmit} className="new-item-form">
       <div className="form-row">
-        <label htmlFor="item">New Item</label>
+        <label htmlFor="item" className="form-label">
+          New Item
+        </label>
         <input
+          className="form-control"
           type="text"
           id="item"
           value={newItem}
@@ -27,7 +30,7 @@ const NewToDoForm = ({ addTodo }) => {
           }}
         />
       </div>
-      <button className="btn" type="submit">
+      <button className="btn btn-primary my-2" type="submit">
         Add
       </button>
     </form>
